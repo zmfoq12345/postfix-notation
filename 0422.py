@@ -54,18 +54,19 @@ def solution(Sik):
     for x in Sik:
         if x in prec:
             if x != '(' and not opStack.isEmpty():
-                if prec[opStack.peek()] >= prec[x]:
+                if prec[opStack.peek()] >= prec[x]: # 우선순위 비교
                     answer += opStack.pop()
             opStack.push(x)
 
         elif x == ')':
             while not opStack.isEmpty() and opStack.peek() != '(':
                 answer += opStack.pop()        
-
+            opStack.pop() # 여는 괄호 제외
+            
         else : answer += x
 
     while not opStack.isEmpty():
-        if opStack.peek() == '(':opStack.pop()
-        answer += opStack.pop()
+        if opStack.peek() == '(' : opStack.pop() #스택에서 괄호 제외
+        if opStack.size() > 0: answer += opStack.pop()
     return answer
-print(solution('A*D-(C-B)'))
+print(solution('(2+(8-2*1)*6)+6*1024'))
