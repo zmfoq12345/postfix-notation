@@ -17,29 +17,6 @@ class ArrayStack:
 
     def peek(self):
         return self.data[-1]
-# 올바른 수식 판별
-
-# def solution(expr):
-#     match = {
-#         ')':'(',
-#         '}':'{',
-#         ']':'['
-#     }
-#     S = ArrayStack()
-#     for c in expr:
-#         if c in '({[':
-#             S.push(c)
-
-#         elif c in match:
-#             if S.isEmpty():
-#                 return False
-
-#             else :
-#                 t = S.pop()
-#                 if t != match[c]:
-#                     return False
-
-#     return S.isEmpty
 
 # 중위표현식을 후위표현식으로 변경
 prec = {
@@ -62,11 +39,22 @@ def solution(Sik):
             while not opStack.isEmpty() and opStack.peek() != '(':
                 answer += opStack.pop()        
             opStack.pop() # 여는 괄호 제외
-            
+
         else : answer += x
 
     while not opStack.isEmpty():
         if opStack.peek() == '(' : opStack.pop() #스택에서 괄호 제외
         if opStack.size() > 0: answer += opStack.pop()
     return answer
-print(solution('(2+(8-2*1)*6)+6*1024'))
+
+
+
+import timeit
+start = timeit.default_timer()
+
+#s = input() # 입력받기
+s = '(2+(8-2*1)*6)+6*1024' # 직접 입력
+print(solution(s))
+
+stop = timeit.default_timer()
+print("RunTime : ",stop - start)
